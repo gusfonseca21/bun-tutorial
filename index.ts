@@ -19,7 +19,18 @@ const server = Bun.serve({
             return new Response("Entre em contato")
         }
 
+        if (url.pathname === "/feed") {
+            throw new Error("Não foi possível retornar o feed!")
+        }
+
         return new Response('404!')
+    },
+    error(error) {
+        return new Response (`<pre>${error} \n ${error.stack}</pre>`, {
+            headers: {
+                'Content-Type': 'text/html'
+            }
+        })
     }
 })
 

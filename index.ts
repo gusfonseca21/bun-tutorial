@@ -23,6 +23,10 @@ const server = Bun.serve({
             throw new Error("Não foi possível retornar o feed!")
         }
 
+        if (url.pathname === "/greet") {
+            return new Response(Bun.file('./greet.txt'))
+        }
+
         return new Response('404!')
     },
     error(error) {
